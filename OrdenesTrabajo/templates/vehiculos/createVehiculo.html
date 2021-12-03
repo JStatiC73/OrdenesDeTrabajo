@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block main-container %}
+<div class="container container shadow p-3 mb-5 bg-body rounded" name="contenedor-principal" id="contenedorVehiculos">
+    <h2>Administraci&oacute;n de vehiculos</h2>
+    <hr>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label for="nombreContacto" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombreContacto">
+          </div>
+          <div class="col-md-6">
+              <label for="serieVehiculo" class="form-label">Serie</label>
+              <input type="text" class="form-control" id="serieVehiculo">
+          </div>
+          <div class="col-md-6">
+              <label for="yearVehiculo" class="form-label">Año</label>
+              <input type="email" class="form-control" id="yearVehiculo">
+          </div>
+          <div class="col-md-6">
+              <label for="colorVehiculo" class="form-label">Color</label>
+              <input type="text" class="form-control" id="colorVehiculo">
+          </div>
+          <div class="col-md-6">
+              <label for="marcaVehiculo" class="form-label">Marca</label>
+              <input type="text" class="form-control" id="marcaVehiculo">
+          </div>
+          <div class="col-md-6">
+              <label for="lineaVehiculo" class="form-label">Linea</label>
+              <input type="text" class="form-control" id="lineaVehiculo">
+          </div>
+          <div class="col-12 text-center">
+            <button type="button" class="btn btn-outline-primary" id="guardarVehiculo">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <th>IdVehiculo</th>
+            <th>Contacto</th>
+            <th>Serie</th>
+            <th>Año</th>
+            <th>Colore</th>
+            <th>Marca</th>
+            <th>Linea</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </thead>
+          <tbody id="tbl_vehiculos">
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+{% endblock %}

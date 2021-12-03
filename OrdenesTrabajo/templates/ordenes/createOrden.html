@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block main-container %}
+<div class="container shadow p-3 mb-5 bg-body rounded" name="contenedor-principal" id="contenedorVehiculos">
+    <h2>Administraci&oacute;n de vehiculos</h2>
+    <hr>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label for="cliente" class="form-label">Cliente</label>
+            <input type="text" class="form-control" id="cliente">
+          </div>
+          <div class="col-md-6">
+              <label for="vehiculo" class="form-label">Vehiculo</label>
+              <input type="text" class="form-control" id="vehiculo">
+          </div>
+          <div class="col-md-6">
+              <label for="detalleSolicitud" class="form-label">Detalle de solicitud</label>
+              <input type="email" class="form-control" id="detalleSolicitud">
+          </div>
+          <div class="col-md-6">
+              <label for="estadoSolicitud" class="form-label">Estado</label>
+              <input type="text" class="form-control" id="estadoSolicitud">
+          </div>
+          <div class="col-md-6">
+              <label for="tipoSolicitud" class="form-label">Tipo de Solicitud</label>
+              <input type="text" class="form-control" id="tipoSolicitud">
+          </div>
+          <div class="col-md-6">
+              <label for="tipoReparacion" class="form-label">Tipo de reparaci&oacute;n</label>
+              <input type="text" class="form-control" id="tipoReparacion">
+          </div>
+          <div class="col-md-6">
+              <label for="inspecionesGroup" class="formlabel">Listado de inspecciones</label>
+              <div class="col-md-6">
+                  <input type="checkbox" id="diagnosticoCheck" class="form-check-input">
+                  <label for="diagnosticoCheck" class="form-check-label">Diagnostico</label>
+              </div>
+              <div class="col-md-6">
+                <input type="checkbox" id="compraRepuestoCheck" class="form-check-input">
+                <label for="compraRepuestoCheck" class="form-check-label">Compra de Repuestos</label>
+              </div>
+          </div>
+          <div class="col-12 text-center">
+            <button type="button" class="btn btn-outline-primary" id="guardarOrden">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+{% endblock %}
