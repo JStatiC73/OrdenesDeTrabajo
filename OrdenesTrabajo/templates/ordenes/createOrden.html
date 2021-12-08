@@ -2,7 +2,7 @@
 
 {% block main-container %}
 <div class="container shadow p-3 mb-5 bg-body rounded" name="contenedor-principal" id="contenedorVehiculos">
-    <h2>Administraci&oacute;n de vehiculos</h2>
+    <h2>Registro de Ordenes de Trabajo</h2>
     <hr>
     <div class="row">
       <div class="form-group col-md-12">
@@ -32,7 +32,7 @@
               <input type="text" class="form-control" id="tipoReparacion">
           </div>
           <div class="col-md-6">
-              <label for="inspecionesGroup" class="formlabel">Listado de inspecciones</label>
+              <label for="inspecionesGroup" class="formlabel"><strong>Listado de inspecciones</strong></label>
               <div class="col-md-6">
                   <input type="checkbox" id="diagnosticoCheck" class="form-check-input">
                   <label for="diagnosticoCheck" class="form-check-label">Diagnostico</label>
@@ -40,6 +40,22 @@
               <div class="col-md-6">
                 <input type="checkbox" id="compraRepuestoCheck" class="form-check-input">
                 <label for="compraRepuestoCheck" class="form-check-label">Compra de Repuestos</label>
+              </div>
+              <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="revisionFisicaCheck">
+                <label for="revisionFisicaCheck" class="form-check-label">Revision F&iacute;sica</label>
+              </div>
+              <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="intervencionCheck">
+                <label for="intervencionCheck" class="form-check-label">Intervenci&oacute;n</label>
+              </div>
+              <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="scanerCheck">
+                <label for="scanerCheck" class="form-check-label">Scanner</label>
+              </div>
+              <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="solicitudPresupuestoCheck">
+                <label for="solicitudPresupuestoCheck" class="form-check-label">Solicitud de presupuesto</label>
               </div>
           </div>
           <div class="col-12 text-center">

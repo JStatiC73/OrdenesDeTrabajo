@@ -6,33 +6,35 @@
     <hr>
     <div class="row">
       <div class="form-group col-md-12">
-        <form class="row g-3">
+        <form class="row g-3" method="POST" action="{% url 'guardar-vehiculo' %}">
           <div class="col-md-6">
-            <label for="nombreContacto" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombreContacto">
+            <label for="nombreContacto" class="form-label">Cliente</label>
+            <input value="{{ cliente.IdContacto }}" name="idCliente" type="text" hidden>
+            <input type="text" class="form-control" name="nombreCliente" id="nombreContacto" disabled value="{{ cliente.NombreCompleto }}">
           </div>
           <div class="col-md-6">
               <label for="serieVehiculo" class="form-label">Serie</label>
-              <input type="text" class="form-control" id="serieVehiculo">
+              <input type="text" name="serieVehiculo" class="form-control" id="serieVehiculo">
           </div>
           <div class="col-md-6">
               <label for="yearVehiculo" class="form-label">Año</label>
-              <input type="email" class="form-control" id="yearVehiculo">
+              <input type="Number" name="yearVehiculo" class="form-control" id="yearVehiculo">
           </div>
           <div class="col-md-6">
               <label for="colorVehiculo" class="form-label">Color</label>
-              <input type="text" class="form-control" id="colorVehiculo">
+              <input type="text" name="colorVehiculo" class="form-control" id="colorVehiculo">
           </div>
           <div class="col-md-6">
               <label for="marcaVehiculo" class="form-label">Marca</label>
-              <input type="text" class="form-control" id="marcaVehiculo">
+              <input type="text" name="marcaVehiculo" class="form-control" id="marcaVehiculo">
           </div>
           <div class="col-md-6">
               <label for="lineaVehiculo" class="form-label">Linea</label>
-              <input type="text" class="form-control" id="lineaVehiculo">
+              <input type="text" name="lineaVehiculo" class="form-control" id="lineaVehiculo">
           </div>
           <div class="col-12 text-center">
-            <button type="button" class="btn btn-outline-primary" id="guardarVehiculo">Guardar</button>
+            <a class="btn btn-outline-danger" href="/vehiculos">Volver</a>
+            <button type="submit" class="btn btn-outline-primary" id="guardarVehiculo">Guardar</button>
           </div>
         </form>
       </div>
@@ -43,10 +45,9 @@
         <table class="table table-striped table-bordered table-hover">
           <thead>
             <th>IdVehiculo</th>
-            <th>Contacto</th>
             <th>Serie</th>
             <th>Año</th>
-            <th>Colore</th>
+            <th>Color</th>
             <th>Marca</th>
             <th>Linea</th>
             <th>Editar</th>

@@ -9,3 +9,9 @@ class Contacto(models.Model):
     Email = models.EmailField(unique=True)
     Telefono = models.CharField(max_length=13)
     Estado = models.BooleanField(default=True)
+
+    def NombreCompleto(self):
+        return self.Nombre + ' ' + self.Apellido
+
+    def EstadoStr(self):
+        return 'Activo' if self.Estado else 'Inactivo'

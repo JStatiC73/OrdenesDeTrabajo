@@ -3,5 +3,5 @@ from django.apps import AppConfig
 
 class VehiculosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'vehiculos',
-    varbose_name = 'Vehiculos',
+    name = 'vehiculos'
+    verbose_name = 'Vehiculos'

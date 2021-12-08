@@ -27,9 +27,18 @@ urlpatterns = [
     # ejemplo de url con declaracion de variables y tipos
     # path('hi/<str:name>/<int:age>/', local_view),
 
-    path('diagnosticos/', diagnosticos_views.main),
-    path('dashboard/', dashboard_views.dashboard),
-    path('contactos/', contactos_views.main),
-    path('vehiculos/', vehiculos_views.main),
-    path('ordenes/', ordenes_views.main),
+    path('diagnosticos/', diagnosticos_views.main, name='diagnosticos'),
+    path('dashboard/', dashboard_views.dashboard, name='dashboard'),
+
+    path('contactos/', contactos_views.main, name='contactos'),
+    path('crearContacto/', contactos_views.create, name='crear-contacto'),
+    path('contacto/', contactos_views.contacto, name='detalle-contacto'),
+    path('editContacto/', contactos_views.editContacto, name='edit-contacto'),
+    path('eliminarContacto/', contactos_views.deleteContacto, name='eliminar-contacto'),
+
+    path('vehiculos/', vehiculos_views.main, name='vehiculos'),
+    path('crearVehiculo/', vehiculos_views.adminVehiculos, name='admin-vehiculos'),
+    path('guardarVehiculo/', vehiculos_views.guardarVehiculo, name='guardar-vehiculo'),
+
+    path('ordenes/', ordenes_views.main, name='ordenes'),
 ]

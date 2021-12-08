@@ -1,30 +1,40 @@
 {% extends "base.html" %}
 
 {% block main-container %}
+
+{% if contacto %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p>Contacto registrado exitosamente!</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
 <div class="container container shadow p-3 mb-5 bg-body rounded" name="contenedor-principal" id="contenedorContactos">
     <h2>Administraci&oacute;n de contactos</h2>
     <hr>
     <div class="row">
       <div class="form-group col-md-12">
-        <form class="row g-3">
+        <form method="POST" class="row g-3" action="{% url 'crear-contacto' %}">
+          {% csrf_token %}
+          
           <div class="col-md-6">
             <label for="nombreContacto" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombreContacto">
+            <input type="text" name="nombreContacto" class="form-control" id="nombreContacto">
           </div>
           <div class="col-md-6">
               <label for="apellidoContacto" class="form-label">Apellido</label>
-              <input type="text" class="form-control" id="apellidoContacto">
+              <input type="text" name="apellidoContacto" class="form-control" id="apellidoContacto">
           </div>
           <div class="col-md-6">
               <label for="emailContacto" class="form-label">Email</label>
-              <input type="email" class="form-control" id="emailContacto">
+              <input type="email" name="emailContacto" class="form-control" id="emailContacto">
           </div>
           <div class="col-md-6">
               <label for="telefonoContacto" class="form-label">Tel&eacute;fono</label>
-              <input type="text" class="form-control" id="telefonoContacto">
+              <input type="text" name="telefonoContacto" class="form-control" id="telefonoContacto">
           </div>
           <div class="col-12 text-center">
-            <button type="button" class="btn btn-outline-primary" id="guardarGrupoGasto">Guardar</button>
+            <button type="submit" class="btn btn-outline-primary" id="guardarGrupoGasto">Guardar</button>
           </div>
         </form>
       </div>
@@ -38,11 +48,28 @@
             <th>Nombre Completo</th>
             <th>Email</th>
             <th>Telefono</th>
+            <th>Estado</th>
             <th>Editar</th>
             <th>Eliminar</th>
           </thead>
           <tbody id="tbl_contactos">
-            
+            {% if contactos %}
+              {% for contacto in contactos %}
+              <tr>
+                <td>{{ contacto.IdContacto }}</td>
+                <td>{{ contacto.NombreCompleto }}</td>
+                <td>{{ contacto.Email }}</td>
+                <td>{{ contacto.Telefono }}</td>
+                <td>{{ contacto.EstadoStr }}</td>
+                <td>
+                  <a class="btn btn-outline-primary" href="/contacto/?idContacto={{ contacto.IdContacto }}">Editar</a>
+                </td>
+                <td>
+                  <a class="btn btn-outline-danger" href="/eliminarContacto/?idContacto={{ contacto.IdContacto }}">Eliminar</a>
+                </td>
+              </tr>
+              {% endfor %}
+            {% endif %}
           </tbody>
         </table>
       </div>
