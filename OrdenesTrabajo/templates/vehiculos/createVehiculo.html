@@ -7,6 +7,7 @@
     <div class="row">
       <div class="form-group col-md-12">
         <form class="row g-3" method="POST" action="{% url 'guardar-vehiculo' %}">
+          {% csrf_token %}
           <div class="col-md-6">
             <label for="nombreContacto" class="form-label">Cliente</label>
             <input value="{{ cliente.IdContacto }}" name="idCliente" type="text" hidden>
@@ -54,7 +55,32 @@
             <th>Eliminar</th>
           </thead>
           <tbody id="tbl_vehiculos">
-            
+            {% if vehiculos %}
+              {% for vehiculo in vehiculos %}
+                <tr>
+                  <td>
+                    {{ vehiculo.IdVehiculo }}
+                  </td>
+                  <td>
+                    {{ vehiculo.Serie }}
+                  </td>
+                  <td>
+                    {{ vehiculo.Year }}
+                  </td>
+                  <td>
+                    {{ vehiculo.Color }}
+                  </td>
+                  <td>
+                    {{ vehiculo.Marca }}
+                  </td>
+                  <td>
+                    {{ vehiculo.Linea }}
+                  </td>
+                  <td><a class="btn btn-outline-primary" href="/detalleVehiculo/?idVehiculo={{ vehiculo.IdVehiculo }}">Editar</a></td>
+                  <td><a class="btn btn-outline-danger" href="/eliminarVehiculo/?idVehiculo={{ vehiculo.IdVehiculo }}">Eliminar</a></td>
+                </tr>
+              {% endfor %}
+            {% endif %}
           </tbody>
         </table>
       </div>

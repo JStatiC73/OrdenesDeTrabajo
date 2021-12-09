@@ -15,12 +15,15 @@ def main(request):
 def adminVehiculos(request):
     idCliente = request.GET['idCliente']
     cliente = Contacto.objects.get(pk = idCliente)
-    return render(request, 'vehiculos/createVehiculo.html', { 'cliente': cliente })
+    vehiculos = Vehiculo.objects.filter(IdContacto = cliente)
+    return render(request, 'vehiculos/createVehiculo.html', { 'cliente': cliente, 'vehiculos': vehiculos })
 
 def guardarVehiculo(request):
     if request.method == 'POST':
         nuevoVehiculo = Vehiculo()
-        nuevoVehiculo.IdContacto = request.POST['idCliente']
+        idContacto = request.POST['idCliente']
+        contacto = Contacto.objects.get(pk = idContacto)
+        nuevoVehiculo.IdContacto = contacto
         nuevoVehiculo.Serie = request.POST['serieVehiculo']
         nuevoVehiculo.Year = request.POST['yearVehiculo']
         nuevoVehiculo.Color = request.POST['colorVehiculo']
@@ -29,7 +32,34 @@ def guardarVehiculo(request):
     
         nuevoVehiculo.save()
 
-        return redirect('crearVehiculo/?idCliente=' + str(nuevoVehiculo.IdContacto))
+        return redirect('/crearVehiculo/?idCliente=' + str(idContacto))
 
     contactos = Contacto.objects.all()
     return render(request, 'vehiculos/clientes.html', { 'contactos': contactos })
+
+def deleteVehiculo(request):
+    idVehiculo = request.GET['idVehiculo']
+    vehiculo = Vehiculo.objects.get(pk = idVehiculo)
+    vehiculo.delete()
+
+    return redirect('/crearVehiculo/?idCliente=' + str(vehiculo.IdContacto.IdContacto))
+
+def detalleVehiculo(request):
+    idVehiculo = request.GET['idVehiculo']
+    vehiculo = Vehiculo.objects.get(pk = idVehiculo)
+
+    return render(request, 'vehiculos/editarVehiculo.html', { 'vehiculo': vehiculo })
+
+def editarVehiculo(request):
+    if request.method == 'POST':
+        idVehiculo = request.POST['idVehiculo']
+        vehiculo = Vehiculo.objects.get(pk = idVehiculo)
+        vehiculo.Serie = request.POST['serieVehiculo']
+        vehiculo.Year = request.POST['yearVehiculo']
+        vehiculo.Color = request.POST['colorVehiculo']
+        vehiculo.Marca = request.POST['marcaVehiculo']
+        vehiculo.Linea = request.POST['lineaVehiculo']
+    
+        vehiculo.save()
+
+        return redirect('/crearVehiculo/?idCliente=' + str(vehiculo.IdContacto.IdContacto))

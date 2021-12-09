@@ -39,6 +39,9 @@ urlpatterns = [
     path('vehiculos/', vehiculos_views.main, name='vehiculos'),
     path('crearVehiculo/', vehiculos_views.adminVehiculos, name='admin-vehiculos'),
     path('guardarVehiculo/', vehiculos_views.guardarVehiculo, name='guardar-vehiculo'),
+    path('detalleVehiculo/', vehiculos_views.detalleVehiculo, name='detalles-vehiculo'),
+    path('editarVehiculo/', vehiculos_views.editarVehiculo, name='editar-vehiculo'),
+    path('eliminarVehiculo/', vehiculos_views.deleteVehiculo, name='eliminar-vehiculo'),
 
     path('ordenes/', ordenes_views.main, name='ordenes'),
 ]

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block main-container %}
+<div class="container container shadow p-3 mb-5 bg-body rounded" name="contenedor-principal" id="contenedorVehiculos">
+    <h2>Edici&oacute;n de vehiculo</h2>
+    <hr>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <form class="row g-3" method="POST" action="{% url 'editar-vehiculo' %}">
+          {% csrf_token %}
+          <div class="col-md-6">
+            <label for="nombreContacto" class="form-label">Cliente</label>
+            <input value="{{ vehiculo.IdVehiculo }}" name="idVehiculo" type="text" hidden>
+            <input type="text" class="form-control" name="nombreCliente" id="nombreContacto" disabled value="{{ vehiculo.IdContacto.NombreCompleto }}">
+          </div>
+          <div class="col-md-6">
+              <label for="serieVehiculo" class="form-label">Serie</label>
+              <input type="text" name="serieVehiculo" class="form-control" id="serieVehiculo" value="{{ vehiculo.Serie }}">
+          </div>
+          <div class="col-md-6">
+              <label for="yearVehiculo" class="form-label">Año</label>
+              <input type="Number" name="yearVehiculo" class="form-control" id="yearVehiculo" value="{{ vehiculo.Year }}">
+          </div>
+          <div class="col-md-6">
+              <label for="colorVehiculo" class="form-label">Color</label>
+              <input type="text" name="colorVehiculo" class="form-control" id="colorVehiculo" value="{{ vehiculo.Color }}">
+          </div>
+          <div class="col-md-6">
+              <label for="marcaVehiculo" class="form-label">Marca</label>
+              <input type="text" name="marcaVehiculo" class="form-control" id="marcaVehiculo" value="{{ vehiculo.Marca }}">
+          </div>
+          <div class="col-md-6">
+              <label for="lineaVehiculo" class="form-label">Linea</label>
+              <input type="text" name="lineaVehiculo" class="form-control" id="lineaVehiculo" value="{{ vehiculo.Linea }}">
+          </div>
+          <div class="col-12 text-center">
+            <a class="btn btn-outline-danger" href="/crearVehiculo/?idCliente={{ vehiculo.IdContacto.IdContacto }}">Volver</a>
+            <button type="submit" class="btn btn-outline-primary" id="guardarVehiculo">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+{% endblock %}
