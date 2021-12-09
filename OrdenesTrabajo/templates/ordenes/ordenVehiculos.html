@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block main-container %}
+
+<div class="container container shadow p-3 mb-5 bg-body rounded" name="contenedor-principal" id="contenedorClientes">
+    <h2>Vehiculos</h2>
+    <hr>
+    <div class="row">
+        <div class="col-12 text-center">
+            <a href="/ordenesClientes" class="btn btn-outline-danger" id="volver">Volver</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="form-group col-md-12">
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <th>IdVehiculo</th>
+              <th>Serie</th>
+              <th>Año</th>
+              <th>Color</th>
+              <th>Marca</th>
+              <th>Linea</th>
+              <th>Acci&oacute;n</th>
+            </thead>
+            <tbody id="tbl_vehiculos">
+              {% if vehiculos %}
+                {% for vehiculo in vehiculos %}
+                  <tr>
+                    <td>
+                      {{ vehiculo.IdVehiculo }}
+                    </td>
+                    <td>
+                      {{ vehiculo.Serie }}
+                    </td>
+                    <td>
+                      {{ vehiculo.Year }}
+                    </td>
+                    <td>
+                      {{ vehiculo.Color }}
+                    </td>
+                    <td>
+                      {{ vehiculo.Marca }}
+                    </td>
+                    <td>
+                      {{ vehiculo.Linea }}
+                    </td>
+                    <td><a class="btn btn-outline-primary" href="/crearOrden/?idVehiculo={{ vehiculo.IdVehiculo }}&idCliente={{ vehiculo.IdContacto.IdContacto }}">Generar Orden de Trabajo</a></td>
+                  </tr>
+                {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>
+{% endblock %}

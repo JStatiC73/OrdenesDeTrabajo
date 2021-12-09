@@ -43,5 +43,7 @@ urlpatterns = [
     path('editarVehiculo/', vehiculos_views.editarVehiculo, name='editar-vehiculo'),
     path('eliminarVehiculo/', vehiculos_views.deleteVehiculo, name='eliminar-vehiculo'),
 
-    path('ordenes/', ordenes_views.main, name='ordenes'),
+    path('ordenesClientes/', ordenes_views.main, name='ordenes-clientes'),
+    path('ordenVehiculos/', ordenes_views.ordenVehiculos, name='ordenes-vehiculos'),
+    path('crearOrden/', ordenes_views.crearOrden, name='crear-orden'),
 ]

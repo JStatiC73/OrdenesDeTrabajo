@@ -13,7 +13,6 @@ def main(request):
 
 def create(request):
     if request.method == 'POST':
-        print("Entro!")
         nuevoContacto = Contacto()
         nuevoContacto.Nombre = request.POST['nombreContacto']
         nuevoContacto.Apellido = request.POST['apellidoContacto']
