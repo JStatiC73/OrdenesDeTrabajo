@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block main-container %}
+
+<div class="container container shadow p-3 mb-5 bg-body rounded" name="contenedor-principal" id="contenedorClientes">
+    <h2>Ordenes de Trabajo</h2>
+    <hr>
+    <div class="row">
+        <div class="col-12 text-center">
+            <a href="/ordenesClientes" class="btn btn-outline-success" id="nueva">Nueva Orden</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <th>No. de Orden</th>
+            <th>Cliente</th>
+            <th>Tipo de Solicitud</th>
+            <th>Estado</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </thead>
+          <tbody id="tbl_ordenes">
+            {% if ordenes %}
+              {% for orden in ordenes %}
+              <tr>
+                <td>{{ orden.IdOrden }}</td>
+                <td>{{ orden.IdContacto.NombreCompleto }}</td>
+                <td>{{ orden.TipoSolicitud.Descripcion }}</td>
+                <td>{{ orden.IdEstado.Descripcion }}</td>
+                <td>
+                    <a class="btn btn-outline-primary" href="/detalleOrden/?idOrden={{ orden.IdOrden }}">Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-outline-danger" href="/eliminarOrden/?idOrden={{ orden.IdOrden }}">Eliminar</a>
+                </td>
+              </tr>
+              {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -43,7 +43,12 @@ urlpatterns = [
     path('editarVehiculo/', vehiculos_views.editarVehiculo, name='editar-vehiculo'),
     path('eliminarVehiculo/', vehiculos_views.deleteVehiculo, name='eliminar-vehiculo'),
 
+    path('ordenesTrabajo/', ordenes_views.listaOrdenes, name='ordenesTrabajo'),
     path('ordenesClientes/', ordenes_views.main, name='ordenes-clientes'),
     path('ordenVehiculos/', ordenes_views.ordenVehiculos, name='ordenes-vehiculos'),
     path('crearOrden/', ordenes_views.crearOrden, name='crear-orden'),
+    path('guardarOrden/', ordenes_views.guardarOrden, name='guardar-orden'),
+    path('detalleOrden/', ordenes_views.detalleOrden, name='detalle-orden'),
+    path('editarOrden/', ordenes_views.editarOrden, name='editar-orden'),
+    path('eliminarOrden/', ordenes_views.deleteOrden, name='eliminar-orden'),
 ]

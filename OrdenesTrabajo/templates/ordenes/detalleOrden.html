@@ -6,21 +6,20 @@
     <hr>
     <div class="row">
       <div class="form-group col-md-12">
-        <form class="row g-3" method="POST" action="{% url 'guardar-orden' %}">
+        <form class="row g-3" method="POST" action="{% url 'editar-orden' %}">
           {% csrf_token %}
           <div class="col-md-6">
             <label for="cliente" class="form-label">Cliente</label>
-            <input type="text" name="idCliente" value="{{ cliente.IdContacto }}" hidden>
-            <input type="text" class="form-control" id="cliente" value="{{ cliente.NombreCompleto }}" disabled>
+            <input type="text" name="idOrden" value="{{ orden.IdOrden }}" hidden>
+            <input type="text" class="form-control" id="cliente" value="{{ orden.IdContacto.NombreCompleto }}" disabled>
           </div>
           <div class="col-md-6">
               <label for="vehiculo" class="form-label">Vehiculo</label>
-              <input type="text" value="{{ vehiculo.IdVehiculo }}" name="idVehiculo" hidden>
-              <input type="text" class="form-control" id="vehiculo" value="{{ vehiculo.Marca }}" disabled>
+              <input type="text" class="form-control" id="vehiculo" value="{{ orden.IdVehiculo.Marca }}" disabled>
           </div>
           <div class="col-md-6">
             <label for="tipoReparacion" class="form-label">Tipo de reparaci&oacute;n</label>
-            <input type="text" class="form-control" name="tipoReparacion" id="tipoReparacion">
+            <input type="text" class="form-control" name="tipoReparacion" id="tipoReparacion" value="{{ orden.TipoReparacion }}">
           </div>
           <div class="col-md-6">
               <label for="tipoSolicitud" class="form-label">Tipo de Solicitud</label>
@@ -28,7 +27,8 @@
                 <option value="0">Seleccione el tipo de Solicitud</option>
                 {% if tiposSolicitud %}
                   {% for tipoS in tiposSolicitud %}
-                    <option value="{{ tipoS.IdTipoSolicitud }}">{{ tipoS.Descripcion }}</option>
+                    <option value="{{ tipoS.IdTipoSolicitud }}"  
+                        {% if orden.TipoSolicitud.IdTipoSolicitud == tipoS.IdTipoSolicitud %} selected {% endif %}>{{ tipoS.Descripcion }}</option>
                   {% endfor %}
                 {% endif %}
               </select>
@@ -39,44 +39,57 @@
                 <option value="0">Seleccione un estado</option>
                 {% if estados %}
                   {% for estado in estados %}
-                    <option value="{{ estado.IdEstado }}">{{ estado.Descripcion }}</option>
+                    <option value="{{ estado.IdEstado }}"
+                        {% if orden.IdEstado.IdEstado == estado.IdEstado %} selected {% endif %}>{{ estado.Descripcion }}</option>
                   {% endfor %}
                 {% endif %}
               </select>
           </div>
           <div class="col-md-6">
             <label for="detalleSolicitud" class="form-label">Detalle de solicitud</label>
-            <textarea type="text" name="detalleSolicitud" class="form-control" id="detalleSolicitud"></textarea>
+            <textarea type="text" name="detalleSolicitud" class="form-control" id="detalleSolicitud">{{ orden.DetalleSolicitud }}</textarea>
           </div>
           <div class="col-md-6">
               <label for="inspecionesGroup" class="formlabel"><strong>Listado de inspecciones</strong></label>
               <div class="col-md-6">
-                  <input type="checkbox" name="diagnosticoCheck" id="diagnosticoCheck" class="form-check-input">
+                  <input type="checkbox" name="diagnosticoCheck" 
+                    id="diagnosticoCheck" class="form-check-input"
+                    {% if orden.Diagnostico %} checked {% endif %}>
                   <label for="diagnosticoCheck" class="form-check-label">Diagnostico</label>
               </div>
               <div class="col-md-6">
-                <input type="checkbox" name="compraRepuestoCheck" id="compraRepuestoCheck" class="form-check-input">
+                <input type="checkbox" name="compraRepuestoCheck" 
+                    id="compraRepuestoCheck" class="form-check-input"
+                    {% if orden.Repuesto %} checked {% endif %}>
                 <label for="compraRepuestoCheck" class="form-check-label">Compra de Repuestos</label>
               </div>
               <div class="col-md-6">
-                <input type="checkbox" name="revisionFisicaCheck" class="form-check-input" id="revisionFisicaCheck">
+                <input type="checkbox" name="revisionFisicaCheck" 
+                    class="form-check-input" id="revisionFisicaCheck"
+                    {% if orden.RevisionFisica %} checked {% endif %}>
                 <label for="revisionFisicaCheck" class="form-check-label">Revision F&iacute;sica</label>
               </div>
               <div class="col-md-6">
-                <input type="checkbox" name="intervencionCheck" class="form-check-input" id="intervencionCheck">
+                <input type="checkbox" name="intervencionCheck" 
+                    class="form-check-input" id="intervencionCheck"
+                    {% if orden.Intervencion %} checked {% endif %}>
                 <label for="intervencionCheck" class="form-check-label">Intervenci&oacute;n</label>
               </div>
               <div class="col-md-6">
-                <input type="checkbox" name="scanerCheck" class="form-check-input" id="scanerCheck">
+                <input type="checkbox" name="scanerCheck" 
+                    class="form-check-input" id="scanerCheck"
+                    {% if orden.Scaner %} checked {% endif %}>
                 <label for="scanerCheck" class="form-check-label">Scanner</label>
               </div>
               <div class="col-md-6">
-                <input type="checkbox" name="solicitudPresupuestoCheck" class="form-check-input" id="solicitudPresupuestoCheck">
+                <input type="checkbox" name="solicitudPresupuestoCheck" 
+                    class="form-check-input" id="solicitudPresupuestoCheck"
+                    {% if orden.SolicitudRepuesto %} checked {% endif %}>
                 <label for="solicitudPresupuestoCheck" class="form-check-label">Solicitud de presupuesto</label>
               </div>
           </div>
           <div class="col-12 text-center">
-            <a class="btn btn-outline-danger" href="/ordenVehiculos/?idCliente={{ cliente.IdContacto }}">Volver</a>
+            <a class="btn btn-outline-danger" href="/ordenesTrabajo">Volver</a>
             <button type="submit" class="btn btn-outline-primary" id="guardarOrden">Guardar</button>
           </div>
         </form>
